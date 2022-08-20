@@ -141,11 +141,8 @@ class _FormScreenState extends State<FormScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 color: Colors.grey[300],
                 onPressed: () {},
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.g_mobiledata),
-                    hintText: 'Login with Google ',
-                  ),
+                child: Text(
+                  'Login with Google ',
                 ),
               ),
               Row(
