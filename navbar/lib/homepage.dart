@@ -1,50 +1,136 @@
-// import 'package:flutter/material.dart';
-// import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-// import 'package:navbar/main.dart';
-// import 'package:navbar/screen/form_screen.dart';
-// import 'package:navbar/screen/ig.dart';
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
-// class Homepage extends StatefulWidget {
-//   @override
-//   State<Homepage> createState() => _HomepageState();
-// }
+class Homepage extends StatefulWidget {
+  const Homepage({Key? key}) : super(key: key);
 
-// class _HomepageState extends State<Homepage> {
-//   int _currentindex = 0;
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
 
-//   //icons list
-//   final iconList = <IconData>[
-//     Icons.home,
-//     Icons.person,
-//     Icons.message,
-//     Icons.bookmark,
-//   ];
+class _HomepageState extends State<Homepage> {
+  @override
+  void initState() {
+    super.initState();
+    fetchDataFromServer();
+  }
 
-//   //screenlist
-//   final pageList = [
-//     FormScreen(),
-//     UserSection(),
-//     MyApp(),
-//   ];
+  String bodyText = "this is body";
+  List<Comment> comment = [];
+  fetchDataFromServer() async {
+    print("fetching data from server");
+    final serverLocation = "https://jsonplaceholder.typicode.com/comments";
+    final uri = Uri.parse(serverLocation);
+    print("serever url is $serverLocation");
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       floatingActionButton: FloatingActionButton(onPressed: () {}),
-//       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-//       bottomNavigationBar: AnimatedBottomNavigationBar(
-//           //backgroundColor: Colors.black,
-//           icons: iconList,
-//           activeIndex: _currentindex,
-//           gapLocation: GapLocation.center,
-//           notchSmoothness: NotchSmoothness.verySmoothEdge,
-//           leftCornerRadius: 32,
-//           rightCornerRadius: 32,
-//           onTap: (index) {
-//             _currentindex = index;
-//             setState(() {});
-//           }),
-//       body: pageList[_currentindex],
-//     );
-//   }
-// }
+    //Get
+    print("1. fetching value from server");
+    var response = http.get(uri);
+    response.then((res) {
+      print(res.statusCode);
+      bodyText = res.body;
+
+      final List decoded = json.decode(res.body);
+      // comment = decoded;
+
+      comment = decoded
+          .map<Comment>((item) => Comment.convertJsonToComment(item))
+          .toList();
+      print("body text is-----------:$bodyText");
+      setState(() {});
+    });
+    response.catchError((e) {
+      print(e);
+    });
+
+    try {
+      var response2 = await http.get(uri);
+      print(response2.statusCode);
+    } catch (e) {
+      print(e);
+    }
+    print('2');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+          child: ListView.builder(
+              itemCount: comment.length,
+              itemBuilder: (context, index) {
+                final Comment _comments = comment[index];
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${index + 1}. " + _comments.email,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.black),
+                        ),
+                        SizedBox(height: 10),
+                        Text(_comments.email),
+                        // Divider()
+                      ],
+                    ),
+                  ),
+                );
+              })),
+    );
+  }
+}
+
+// {
+//     "postId": 1,
+//     "id": 1,
+//     "name": "id labore ex et quam laborum",
+//     "email": "Eliseo@gardner.biz",
+//     "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+//   },
+//we are modelling data here
+class Comment {
+  final int postId;
+  final int id;
+  final String name, email, body;
+  //converting json data
+  Comment(
+      {required this.postId,
+      required this.id,
+      required this.name,
+      required this.email,
+      required this.body});
+
+  static Comment convertJsonToPost(Map json) {
+    return Comment(
+      postId: json['userId'],
+      id: json['id'],
+      name: json['title'],
+      email: json['email'],
+      body: json['body'],
+    );
+  }
+
+// deserialization
+  Map toJson() {
+    return {
+      "postId": post,
+      "id": id,
+      "name": name,
+      "email": email,
+      "body": body,
+    };
+  }
+
+  static convertJsonToComment(item) {}
+}

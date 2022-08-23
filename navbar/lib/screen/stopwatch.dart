@@ -10,65 +10,52 @@ class StopWatch extends StatefulWidget {
 }
 
 class _StopWatchState extends State<StopWatch> {
-  // step 2 adding time and duration variable
-  Timer? countdownTimer;
-  Duration myduration = Duration(days: 5);
+  int timeleft = 5;
+
+  void _startCountdown() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      if (timeleft > 0) {
+        setState(() {
+          timeleft--;
+        });
+      } else {
+        timer.cancel();
+      }
+    });
+  }
 
   @override
-  // void initState() {
-  //   super.initState();
-  // }
-
-  // //step 3 adding a method to start , stop & reset timer
-
-  // void startTimer() {
-  //   countdownTimer = Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
-  // }
-
-  // void stopTimer() {
-  //   setState(() {
-  //     countdownTimer!.cancel();
-  //   });
-  // }
-
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.blue[800],
         body: SafeArea(
-            child: Padding(
-          padding: const EdgeInsets.all(50.0),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: Text(
-                    'StopWatch',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold),
+          child: Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Text(
+                      timeleft.toString(),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                Text(
-                  '00:00:00',
-                  style: TextStyle(color: Colors.white, fontSize: 40),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Container(
-                  height: 400.0,
-                  color: Colors.blue[300],
-                ),
-            
-
-              ]
-              
-              ),
-            
-              
-        ),
-    ));
+                  MaterialButton(
+                    onPressed: _startCountdown,
+                    child: Text(
+                      'S T A R T',
+                      style: TextStyle(
+                          backgroundColor: Colors.white,
+                          fontSize: 50,
+                          color: Colors.blue),
+                    ),
+                  )
+                ]),
+          ),
+        ));
   }
 }
