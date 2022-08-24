@@ -113,11 +113,11 @@ class Comment {
 
   static Comment convertJsonToPost(Map json) {
     return Comment(
-      postId: json['userId'],
-      id: json['id'],
-      name: json['title'],
-      email: json['email'],
-      body: json['body'],
+      postId: json["userId"],
+      id: json["id"],
+      name: json["name"],
+      email: json["email"],
+      body: json["body"],
     );
   }
 
