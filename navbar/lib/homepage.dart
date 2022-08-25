@@ -104,6 +104,7 @@ class Comment {
   final int id;
   final String name, email, body;
   //converting json data
+  //constructor
   Comment(
       {required this.postId,
       required this.id,
@@ -111,6 +112,7 @@ class Comment {
       required this.email,
       required this.body});
 
+//map to objectf
   static Comment convertJsonToPost(Map json) {
     return Comment(
       postId: json["userId"],
@@ -121,7 +123,7 @@ class Comment {
     );
   }
 
-// deserialization
+// serialization
   Map toJson() {
     return {
       "postId": post,
