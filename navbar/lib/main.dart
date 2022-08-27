@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:navbar/homepage.dart';
+import 'package:navbar/screen/custom_route_generator.dart';
+import 'package:navbar/screen/navigationscreen.dart';
 
 // import 'package:navbar/screen/navigationscreen.dart';
 // import 'package:navbar/screen/stopwatch.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Homepage(),
+      home: NavigatorScreen(),
+      onGenerateRoute: ourRouteGenerator,
     );
   }
 }

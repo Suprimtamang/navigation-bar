@@ -11,10 +11,10 @@ class FormScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<FormScreen> createState() => _FormScreenState();
+  State<FormScreen> createState() => FormScreenState();
 }
 
-class _FormScreenState extends State<FormScreen> {
+class FormScreenState extends State<FormScreen> {
   final formKey = GlobalKey<FormState>();
   bool hidePassword = true;
   final emailController = TextEditingController();
@@ -40,14 +40,14 @@ class _FormScreenState extends State<FormScreen> {
                     image: DecorationImage(
                         image: NetworkImage(imgsrc), fit: BoxFit.cover)),
               ),
-              Text(
+              const Text(
                 'Login Page',
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 50,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               TextFormField(

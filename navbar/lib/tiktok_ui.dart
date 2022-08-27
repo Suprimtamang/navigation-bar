@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
+class TiktokPage extends StatefulWidget {
+  const TiktokPage({Key? key}) : super(key: key);
+
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<TiktokPage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<TiktokPage> {
   int _currentIndex = 0;
 
   @override
@@ -16,20 +18,21 @@ class _MyHomePageState extends State<MyHomePage> {
         color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // ignore: prefer_const_literals_to_create_immutables
           children: [
-            Icon(
+            const Icon(
               Icons.home,
             ),
-            Icon(
+            const Icon(
               Icons.people_alt,
             ),
-            Icon(
+            const Icon(
               Icons.add_box_rounded,
             ),
-            Icon(
+            const Icon(
               Icons.message,
             ),
-            Icon(
+            const Icon(
               Icons.person,
             ),
           ],
@@ -45,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
           //follow following text
           Positioned(
             child: Row(
-              children: [
+              children: const [
                 Icon(
                   Icons.live_tv,
                   color: Colors.white,
@@ -86,35 +89,35 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 40,
                   child: Icon(Icons.person),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Icon(
+                const Icon(
                   Icons.favorite,
                   color: Colors.white,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Icon(
+                const Icon(
                   Icons.comment,
                   color: Colors.white,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Icon(
+                const Icon(
                   Icons.bookmark,
                   color: Colors.white,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Icon(
+                const Icon(
                   Icons.share,
                   color: Colors.white,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Container(
@@ -123,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.circular(20)),
                   width: 40,
                   height: 40,
-                  child: Icon(Icons.music_note),
+                  child: const Icon(Icons.music_note),
                 ),
               ],
             ),
@@ -138,23 +141,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 Column(
                   children: [
                     Row(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        Padding(padding: EdgeInsets.only(left: 0)),
-                        Text(
+                        const Padding(padding: EdgeInsets.only(left: 0)),
+                        const Text(
                           "@suprim_01",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
                               color: Colors.white),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.verified,
                           color: Colors.blue,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 6,
                         ),
-                        Text(
+                        const Text(
                           "1h ago",
                           style: TextStyle(
                               fontWeight: FontWeight.w100,
@@ -163,14 +167,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    const Text(
                       "making tiktok UI as an assignment",
                       style: TextStyle(color: Colors.white),
                     ),
-                    Text(
+                    const Text(
                       "#fyp #diy #keepexploring #suprimtamang:)",
                       style: TextStyle(color: Colors.white),
                     )

@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-// import 'package:navbar/homepage.dart';
+import 'package:navbar/screen/routes.dart';
 
 import '../tiktok_ui.dart';
 import 'form_screen.dart';
@@ -12,10 +12,18 @@ class NavigatorScreen extends StatelessWidget {
   NavigatorScreen({Key? key}) : super(key: key);
 
   final List screensList = [
-    {"name": 'LoginPage ', "widget": FormScreen()},
-    {"name": 'Tiktok ', "widget": MyHomePage()},
-    {"name": 'Instagram ', "widget": UserSection()},
-    {"name": 'Stopwatch ', "widget": StopWatch()},
+    {
+      "name": 'LoginPage ',
+      "widget": const FormScreen(),
+      "route": Routes.LoginPage
+    },
+    {"name": 'Tiktok ', "widget": const TiktokPage(), "route": Routes.Tiktok},
+    {"name": 'Instagram ', "widget": UserSection(), "route": Routes.Instagram},
+    {
+      "name": 'Stopwatch ',
+      "widget": const StopWatch(),
+      "route": Routes.Stopwatch
+    },
   ];
 
   @override
@@ -33,10 +41,11 @@ class NavigatorScreen extends StatelessWidget {
             final screen = screensList[index];
             return MaterialButton(
               onPressed: () {
-                final route =
-                    MaterialPageRoute(builder: (context) => screen["widget"]);
-                Navigator.push(context, route);
+                // final route = Navigator.pushNamed(context, "/igpage");
+                // MaterialPageRoute(builder: (context) => screen["widget"]);
+                // Navigator.pushNamed(context, "/homepage");
                 // Navigator.pop(context);
+                Navigator.pushNamed(context, screen["route"]);
               },
               color: Color.fromRGBO(Random().nextInt(255),
                   Random().nextInt(255), Random().nextInt(255), 0.8),
