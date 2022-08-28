@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:navbar/screen/custom_route_generator.dart';
+// import 'package:navbar/screen/ig.dart';
 import 'package:navbar/screen/navigationscreen.dart';
 
-// import 'package:navbar/screen/navigationscreen.dart';
 // import 'package:navbar/screen/stopwatch.dart';
 
 void main() {
