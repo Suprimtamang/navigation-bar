@@ -13,7 +13,7 @@ MaterialPageRoute ourRouteGenerator(RouteSettings settings) {
     case Routes.Tiktok:
       return MaterialPageRoute(builder: (_) => TiktokPage());
     case Routes.Instagram:
-      return MaterialPageRoute(builder: (_) => UserSection());
+      return MaterialPageRoute(builder: (_) => Homepage());
     case Routes.Stopwatch:
       return MaterialPageRoute(builder: (_) => StopWatch());
 

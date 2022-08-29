@@ -4,7 +4,7 @@ import 'package:navbar/screen/routes.dart';
 
 import '../tiktok_ui.dart';
 import 'form_screen.dart';
-import 'ig.dart';
+// import 'ig.dart';
 
 import 'package:navbar/screen/stopwatch.dart';
 
@@ -18,7 +18,7 @@ class NavigatorScreen extends StatelessWidget {
       "route": Routes.LoginPage
     },
     {"name": 'Tiktok ', "widget": const TiktokPage(), "route": Routes.Tiktok},
-    {"name": 'Instagram ', "widget": UserSection(), "route": Routes.Instagram},
+    // {"name": 'Instagram ', "widget": UserSection(), "route": Routes.Instagram},
     {
       "name": 'Stopwatch ',
       "widget": const StopWatch(),
